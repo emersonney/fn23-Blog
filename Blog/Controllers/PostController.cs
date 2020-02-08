@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 using Blog.Models;
@@ -10,11 +11,11 @@ namespace Blog.Controllers
     public class PostController : Controller
     {
 
-        private IList<Post> listaDePosts;
+        private IList<Post> _listaDePosts;
 
         public PostController()
         {
-            this.listaDePosts = new List<Post>
+            this._listaDePosts = new List<Post>
             {
                 new Post { Titulo = "Harry Potter 1", Resumo = "Pedra Filosofal", Categoria = "Filme, Livro" },
                 new Post { Titulo = "Cassino Royale", Resumo = "007", Categoria = "Filme" },
@@ -27,8 +28,30 @@ namespace Blog.Controllers
 
     public IActionResult Index()
         {
+
+            var strCnx = @"Data Source = (localdb)\MSSQLLocalDB;Database=Blog;
+                Integrated Security = True";
+
+            SqlConnection conexao = new SqlConnection(strCnx);
+            conexao.Open();
+
+            SqlCommand comando = new SqlCommand("Select * From Posts", conexao);
+            SqlDataReader leitor = comando.ExecuteReader();
+
+            while(leitor.Read())
+            {
+                var post = new Post();
+                post.Titulo     = leitor["Titulo"].ToString();
+                post.Resumo     = leitor["Resumo"].ToString();
+                post.Categoria  = leitor["Categoria"].ToString();
+                post.Id         = Convert.ToInt32(leitor["Id"]);
+
+                _listaDePosts.Add( post );
+            }
+            conexao.Close();
+
             //ViewBag.Posts = listaDePosts;
-            return View(listaDePosts);
+            return View(_listaDePosts);
         }
 
         public IActionResult Adiciona()
@@ -39,8 +62,8 @@ namespace Blog.Controllers
         [HttpPost]
         public IActionResult Adiciona(Post post)
         {
-            listaDePosts.Add(post);
-            return View("Index", listaDePosts);
+            _listaDePosts.Add(post);
+            return View("Index", _listaDePosts);
         }
 
     }
