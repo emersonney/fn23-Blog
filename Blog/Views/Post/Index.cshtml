@@ -5,12 +5,13 @@
 
 <body>
 
-    <table border="1">
+    <table border="1" cellpadding="2" cellspacing="2">
         <thead>
             <tr>
                 <th>Título</th>
                 <th>Resumo</th>
                 <th>Categoria</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -22,6 +23,7 @@
                     <td>@p.Titulo</td>
                     <td>@p.Resumo</td>
                     <td>@p.Categoria</td>
+                    <td><a href="/Post/RemovePost/@p.Id">Remover</a></td>
                 </tr>
             }
         </tbody>

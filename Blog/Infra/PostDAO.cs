@@ -34,6 +34,15 @@ namespace Blog.Infra
             return lista;
         }
 
+        public IList<Post> FiltraPorCategoria(string categoria)
+        {
+            using (BlogContext contexto = new BlogContext())
+            {
+                var lista = contexto.Posts.ToList();
+                return lista;
+            }
+        }
+
         public void Adiciona(Post post)
         {
 

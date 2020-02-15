@@ -92,8 +92,46 @@ namespace Blog.Controllers
 
         }
 
+
+        public IList<Post> FiltraPorCategoria(string categoria)
+        {
+            using (BlogContext contexto = new BlogContext())
+            {
+                //var lista = contexto.Posts.Where(post => post.Categoria.Contains(categoria)).ToList();
+
+                var lista = from p in contexto.Posts where p.Categoria.Contains(categoria) select p;
+
+
+                return lista.ToList();
+            }
+
+        }
+
+        public IActionResult RemovePost(int id)
+        {
+
+            using (BlogContext contexto = new BlogContext())
+            {
+                Post post = contexto.Posts.Find(id);
+                contexto.Posts.Remove(post);
+                contexto.SaveChanges();
+            }
+                return RedirectToAction("Index");
+        }
+
+        public IActionResult Categoria([Bind(Prefix = "id")] string categoria)
+        {
+            Console.WriteLine("Categoria = " + categoria);
+
+            IList<Post> lista = FiltraPorCategoria(categoria);
+
+            return View("Index", lista);
+        }
+
+
     }
 
+   
  
 
 }
