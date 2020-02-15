@@ -52,11 +52,17 @@ namespace Blog.Controllers
             //}
             //conexao.Close();
 
-            PostDAO dao = new PostDAO();
-            IList<Post> lista = dao.Lista();
+            using (BlogContext contexto = new BlogContext())
+            {
+                var _lista = contexto.Posts.ToList();
+                return View(_lista);
+            }
+
+            //    PostDAO dao = new PostDAO();
+            //IList<Post> lista = dao.Lista();
 
             //ViewBag.Posts = listaDePosts;
-            return View(lista);
+            //return View(lista);
         }
 
         public IActionResult Adiciona()
@@ -68,14 +74,21 @@ namespace Blog.Controllers
         public IActionResult Adiciona(Post post)
         {
             //listaDePosts.Add(post);
-            PostDAO dao = new PostDAO();
-            dao.Adiciona(post);
 
-            //IList<Post> lista = dao.Lista();
+            //PostDAO dao = new PostDAO();
+            //dao.Adiciona(post);
 
-            //return View("Index", lista);
+            using (BlogContext contexto = new BlogContext())
+            {
+                contexto.Posts.Add(post);
+                contexto.SaveChanges();
+            }
 
-            return RedirectToAction("Index");
+                //IList<Post> lista = dao.Lista();
+
+                //return View("Index", lista);
+
+                return RedirectToAction("Index");
 
         }
 
