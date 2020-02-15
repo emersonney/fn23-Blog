@@ -1,4 +1,5 @@
 ﻿using Blog.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -63,6 +64,16 @@ namespace Blog.Infra
             }
 
         }
+
+        public void Atualiza(Post post)
+        {
+            using (BlogContext contexto = new BlogContext())
+            {
+                contexto.Entry(post).State = EntityState.Modified;
+                contexto.SaveChanges();
+            }
+        }
+        
 
     }
 }

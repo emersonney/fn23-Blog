@@ -121,17 +121,38 @@ namespace Blog.Controllers
 
         public IActionResult Categoria([Bind(Prefix = "id")] string categoria)
         {
-            Console.WriteLine("Categoria = " + categoria);
+            //Console.WriteLine("Categoria = " + categoria);
 
             IList<Post> lista = FiltraPorCategoria(categoria);
 
             return View("Index", lista);
         }
 
+        public IActionResult Visualiza(int id)
+        {
+            using (BlogContext contexto = new BlogContext())
+            {
+                Post post = contexto.Posts.Find(id);
+                return View("Visualiza",post);
+
+            }
+        }
+
+        [HttpPost]
+        public IActionResult EditaPost(Post post)
+        {
+           
+            PostDAO dao = new PostDAO();
+            dao.Atualiza(post);
+            return RedirectToAction("Index");
+            
+        }
+
 
     }
 
-   
- 
+  
+
+
 
 }
