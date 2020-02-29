@@ -9,9 +9,11 @@ namespace Blog.Models
     public class Post
     {
         public int Id { get; set; }
-        [Required][StringLength(50)]
+        [Required(ErrorMessage ="O campo Titulo é de preenchimento obrigatório!")]
+        [StringLength(50, ErrorMessage = "Digite no máximo 50 caracteres para o campo Titulo!")]
+        [Display(Name = "Título")]
         public string Titulo { get; set; }
-        [Required]
+        [Required(ErrorMessage = "O campo Resumo é de preenchimento obrigatório!")]
         public string Resumo { get; set; }
         public string Categoria { get; set; }
         public bool Publicado { get; set; }

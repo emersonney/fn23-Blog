@@ -1,24 +1,25 @@
-﻿@model Blog.Models.Post
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model Blog.Models.Post
 <html>
 
 <head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Visualiza Post</title>
 </head>
 
 <body>
 
-    <form action="/Post/EditaPost" method="post">
+    <form asp-controller="Post" asp-action="EditaPost" method="post">
 
-        <input type="hidden" name="id" value="@Model.Id" />
-        <input type="hidden" name="publicado" value="@Model.Publicado.ToString()" />
-        <input type="hidden" name="dataPublicao" value="@Model.DataPublicao" />
-
-        <label> Título: <input name="titulo" value="@Model.Titulo" /></label>@Html.ValidationMessageFor(Model => Model.Titulo)
-        <label> Resumo: <input name="resumo" value="@Model.Resumo" /></label>@Html.ValidationMessageFor(Model => Model.Resumo)
-        <label> Categoria: <input name="categoria" value="@Model.Categoria" /></label>@Html.ValidationMessageFor(Model => Model.Categoria)
+        @Html.EditorFor(p => p)
 
         <button type="submit">Atualizar</button>
 
     </form>
+
+    <script src="~/js/jquery-1.10.2.js"></script>
+    <script src="~/js/jquery.validate.js"></script>
+    <script src="~/js/jquery.validate.unobtrusive.js"></script>
 
 </body>
 
