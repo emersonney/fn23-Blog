@@ -9,9 +9,12 @@
     <form action="/Post/EditaPost" method="post">
 
         <input type="hidden" name="id" value="@Model.Id" />
-        <label> Título: <input name="titulo" value="@Model.Titulo" /></label>
-        <label> Resumo: <input name="resumo" value="@Model.Resumo" /></label>
-        <label> Categoria: <input name="categoria" value="@Model.Categoria" /></label>
+        <input type="hidden" name="publicado" value="@Model.Publicado.ToString()" />
+        <input type="hidden" name="dataPublicao" value="@Model.DataPublicao" />
+
+        <label> Título: <input name="titulo" value="@Model.Titulo" /></label>@Html.ValidationMessageFor(Model => Model.Titulo)
+        <label> Resumo: <input name="resumo" value="@Model.Resumo" /></label>@Html.ValidationMessageFor(Model => Model.Resumo)
+        <label> Categoria: <input name="categoria" value="@Model.Categoria" /></label>@Html.ValidationMessageFor(Model => Model.Categoria)
 
         <button type="submit">Atualizar</button>
 

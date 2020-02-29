@@ -65,6 +65,17 @@ namespace Blog.Infra
 
         }
 
+        public void Publica(int id)
+        {
+            using (BlogContext contexto = new BlogContext())
+            {
+                Post post = contexto.Posts.Find(id);
+                post.Publicado = true;
+                post.DataPublicao = DateTime.Now;
+                contexto.SaveChanges();
+            }
+        }
+
         public void Atualiza(Post post)
         {
             using (BlogContext contexto = new BlogContext())

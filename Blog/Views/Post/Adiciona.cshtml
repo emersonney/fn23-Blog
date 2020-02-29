@@ -1,4 +1,5 @@
-﻿<html>
+﻿@model Blog.Models.Post
+<html>
 
 <head>
 </head>
@@ -7,9 +8,9 @@
 
     <form action="/Post/Adiciona" method="post">
 
-        <label> Título: <input name="titulo" /></label>
-        <label> Resumo: <input name="resumo" /></label>
-        <label> Categoria: <input name="categoria" /></label>
+        <label> Título: <input name="titulo" value="@Model.Titulo" /></label>@Html.ValidationMessageFor(Model => Model.Titulo)
+        <label> Resumo: <input name="resumo" value="@Model.Resumo" /></label>@Html.ValidationMessageFor(Model => Model.Resumo)
+        <label> Categoria: <input name="categoria" value="@Model.Categoria" /></label>@Html.ValidationMessageFor(Model => Model.Categoria)
 
         <button type="submit">Cadastrar</button>
 

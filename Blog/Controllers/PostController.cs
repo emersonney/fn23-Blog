@@ -67,29 +67,34 @@ namespace Blog.Controllers
 
         public IActionResult Adiciona()
         {
-            return View();
+
+            var model = new Post();
+            return View("Adiciona", model);
+
+            //return View();
         }
 
         [HttpPost]
         public IActionResult Adiciona(Post post)
         {
-            //listaDePosts.Add(post);
+            if (ModelState.IsValid) { 
 
-            //PostDAO dao = new PostDAO();
-            //dao.Adiciona(post);
-
-            using (BlogContext contexto = new BlogContext())
-            {
-                contexto.Posts.Add(post);
-                contexto.SaveChanges();
-            }
-
-                //IList<Post> lista = dao.Lista();
-
-                //return View("Index", lista);
+                using (BlogContext contexto = new BlogContext())
+                {
+                    contexto.Posts.Add(post);
+                    contexto.SaveChanges();
+                }
 
                 return RedirectToAction("Index");
+            
+            }else{
 
+                return View("Adiciona",post);
+
+            }
+            //IList<Post> lista = dao.Lista();
+
+            //return View("Index", lista);
         }
 
 
@@ -128,6 +133,14 @@ namespace Blog.Controllers
             return View("Index", lista);
         }
 
+        public IActionResult PublicaPost(int id)
+        {
+            PostDAO dao = new PostDAO();
+            dao.Publica(id);
+            return RedirectToAction("Index");
+
+        }
+
         public IActionResult Visualiza(int id)
         {
             using (BlogContext contexto = new BlogContext())
@@ -141,10 +154,23 @@ namespace Blog.Controllers
         [HttpPost]
         public IActionResult EditaPost(Post post)
         {
-           
-            PostDAO dao = new PostDAO();
-            dao.Atualiza(post);
-            return RedirectToAction("Index");
+            if (ModelState.IsValid)
+            {
+
+                PostDAO dao = new PostDAO();
+                dao.Atualiza(post);
+                return RedirectToAction("Index");
+
+            }
+            else
+            {
+
+                return View("Visualiza", post);
+
+            }
+
+
+
             
         }
 
