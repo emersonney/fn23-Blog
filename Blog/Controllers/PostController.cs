@@ -167,11 +167,17 @@ namespace Blog.Controllers
 
                 return View("Visualiza", post);
 
-            }
+            }   
+        }
 
+        [HttpPost]
+        public ActionResult CategoriaAutocomplete(string termoDigitado)
+        {
 
+            PostDAO dao = new PostDAO();
+            var model = dao.ListaCategoriasQueContemTermo(termoDigitado);
+            return Json(model);
 
-            
         }
 
 
