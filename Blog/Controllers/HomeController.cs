@@ -1,4 +1,5 @@
-﻿using Blog.Models;
+﻿using Blog.Infra;
+using Blog.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -13,9 +14,9 @@ namespace Blog.Controllers
         public IActionResult Index()
         {
 
-
-
-            return View();
+            PostDAO dao = new PostDAO();
+            IList<Post> publicados = dao.ListaPublicados();
+            return View(publicados);
 
         }
 
