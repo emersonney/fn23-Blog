@@ -20,10 +20,14 @@ namespace Blog.Controllers
 
         }
 
+        public IActionResult Busca(string termo)
+        {
+            PostDAO dao = new PostDAO();
+            IList<Post> posts = dao.BuscaPeloTermo(termo);
+            return View("Index", posts);
+        }
+
 
     }
-
-
-
 
 }

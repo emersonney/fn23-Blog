@@ -114,6 +114,16 @@ namespace Blog.Infra
 
         }
 
+        public IList<Post> BuscaPeloTermo(string termo)
+        {
+            using (var contexto = new BlogContext())
+            {
+                return contexto.Posts
+                    .Where(p => (p.Publicado) && (p.Titulo.Contains(termo) || p.Resumo.Contains(termo)))
+                    .ToList();
+            }
+        }
+
 
     }
 }

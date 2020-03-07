@@ -40,7 +40,7 @@ main>form+p {
 	padding-top: 10px;
 }
 .jumbotron{
-	background: #eee url('../wwwroot/images/back.png') center;
+	background: #eee url('../images/back.png') center;
 	padding-left: 40px;
 	box-shadow: 2px 2px 3px;
 }
