@@ -6,13 +6,13 @@
 <input type="hidden" asp-for="DataPublicao" value="@Model.DataPublicao" />
 
 <label asp-for="Titulo"></label>
-<input asp-for="Titulo"/>
+<input asp-for="Titulo" class="form-control" />
 <span asp-validation-for="Titulo"></span>
 
 <label asp-for="Resumo"></label>
-<input asp-for="Resumo" />
+<textarea asp-for="Resumo" class="form-control" rows="6" /></textarea>
 <span asp-validation-for="Resumo"></span>
 
 <label asp-for="Categoria"></label>
-<input asp-for="Categoria" />
+<input asp-for="Categoria" class="form-control"/>
 <span asp-validation-for="Categoria"></span>

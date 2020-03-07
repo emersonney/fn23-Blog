@@ -1,9 +1,11 @@
 ﻿@model IList<Post>
-<div>
-    <h2>Lista de Posts</h2>
-    @Html.ActionLink("Incluir Post", "Adiciona")
 
-    <table cellpadding="2" cellspacing="2">
+    <h2>Lista de Posts</h2>
+
+    <a class="btn btn-primary btn-sm" role="button" asp-action="Adiciona">Incluir Post</a>
+
+    <table class="table table-striped table-hover table-bordered">
+        <caption>Lista dos posts cadastrados no blog.</caption>
         <thead>
             <tr>
                 <th>Título</th>
@@ -18,8 +20,7 @@
             {
                 <tr>
                     <td>
-                        <a href="/Admin/Post/Visualiza/@p.Id">@p.Titulo</a>
-                        @*@Html.ActionLink(p.Titulo, "Visualiza", new { id = p.Id })*@
+                        <a asp-action="Visualiza" asp-route-id="@p.Id">@p.Titulo</a>
                     </td>
                     <td>@p.Resumo</td>
                     <td>@p.Categoria</td>
@@ -34,15 +35,14 @@
                         }
                     </td>
 
-                    <td>
-                        <a href="/Admin/Post/RemovePost/@p.Id">Remover</a>
-                        <a href="/Admin/Post/PublicaPost/@p.Id">Publicar</a>
-
-                        @*@Html.ActionLink("Remover", "RemovePost", new { id = p.Id })
-                            @Html.ActionLink("Publicar", "PublicaPost", new { id = p.Id })*@
+                    <td width="170px">
+                        <div class="btn-group-toggle" data-toggle="buttons">
+                            <a class="btn btn-success btn-sm" role="button" asp-action="PublicaPost" asp-route-id="@p.Id">Publicar</a>
+                            <a class="btn btn-danger btn-sm" role="button" asp-action="RemovePost" asp-route-id="@p.Id">Remover</a>
+                        </div>
                     </td>
                 </tr>
             }
         </tbody>
     </table>
-</div>
+
