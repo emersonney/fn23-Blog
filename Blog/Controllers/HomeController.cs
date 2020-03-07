@@ -24,6 +24,7 @@ namespace Blog.Controllers
         {
             PostDAO dao = new PostDAO();
             IList<Post> posts = dao.BuscaPeloTermo(termo);
+            ViewBag.Mensagem = termo;
             return View("Index", posts);
         }
 
