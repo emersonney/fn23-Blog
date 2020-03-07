@@ -18,7 +18,7 @@
             {
                 <tr>
                     <td>
-                        <a href="/Post/Visualiza/@p.Id">@p.Titulo</a>
+                        <a href="/Admin/Post/Visualiza/@p.Id">@p.Titulo</a>
                         @*@Html.ActionLink(p.Titulo, "Visualiza", new { id = p.Id })*@
                     </td>
                     <td>@p.Resumo</td>
@@ -35,8 +35,8 @@
                     </td>
 
                     <td>
-                        <a href="/Post/RemovePost/@p.Id">Remover</a>
-                        <a href="/Post/PublicaPost/@p.Id">Publicar</a>
+                        <a href="/Admin/Post/RemovePost/@p.Id">Remover</a>
+                        <a href="/Admin/Post/PublicaPost/@p.Id">Publicar</a>
 
                         @*@Html.ActionLink("Remover", "RemovePost", new { id = p.Id })
                             @Html.ActionLink("Publicar", "PublicaPost", new { id = p.Id })*@

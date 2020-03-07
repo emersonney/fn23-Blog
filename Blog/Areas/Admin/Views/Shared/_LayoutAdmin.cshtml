@@ -1,0 +1,26 @@
+﻿<!DOCTYPE HTML>
+<html lang=”pt-br”>
+<head>
+    <meta charset=”UTF-8”>
+    <meta name="viewport" content="width=device-width" />
+    <title>Resenha Cultural</title>
+    <link href="~/css/jquery-ui.css" rel="stylesheet" type="text/css" />
+    <link href="~/css/bootstrap.css" rel="stylesheet" type="text/css" />
+    <link href="~/css/estilo-admin.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+
+    <!-- menu lateral -->
+    <partial name="_MenuAdmin" />
+
+    <!-- região principal -->
+    <main>
+        @RenderBody()
+    </main>
+
+    <!-- seção opcional para carregar os scripts -->
+    @RenderSection("Scripts", false)
+
+</body>
+</html>
+
