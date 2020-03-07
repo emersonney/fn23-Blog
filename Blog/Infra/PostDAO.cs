@@ -96,7 +96,7 @@ namespace Blog.Infra
                     .Select(p => p.Categoria)
                     .Distinct()                    
                     .ToList();
-
+            
             }
 
         }

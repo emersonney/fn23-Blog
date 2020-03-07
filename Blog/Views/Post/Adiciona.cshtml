@@ -1,70 +1,11 @@
-﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
-@model Blog.Models.Post
-<!DOCTYPE html>
-<html>
+﻿@model Post
 
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Novo Post</title>
-    <link href="~/css/jquery-ui.css" rel="stylesheet" />
-</head>
-
-<body>
-
-    <form asp-controller="Post" asp-action="Adiciona" method="post">
-        @Html.EditorFor(p => p)
-        <button type="submit">Cadastrar</button>
-    </form>
-
-    @*@using (Html.BeginForm("Adiciona", "Post"))
-        {
-
-            @Html.LabelFor(p => p.Titulo)
-            @Html.TextBoxFor(p => p.Titulo)
-            @Html.ValidationMessageFor(p => p.Titulo)
-
-            @Html.LabelFor(p => p.Resumo)
-            @Html.TextBoxFor(P => P.Resumo)
-            @Html.ValidationMessageFor(p => p.Resumo)
-
-            @Html.LabelFor(p => p.Categoria)
-            @Html.TextBoxFor(p => p.Categoria)
-            @Html.ValidationMessageFor(p => p.Categoria)
-
-            <button type="submit">Cadastrar</button>
-
-        }*@
+<form asp-controller="Post" asp-action="Adiciona" method="post">
+    @Html.EditorFor(p => p)
+    <button type="submit">Cadastrar</button>
+</form>
 
 
-    <!--
-    <form action="/Post/Adiciona" method="post">
-
-        <label> Título: <input name="titulo" value="@Model.Titulo" maxlength="50" required /></label>@Html.ValidationMessageFor(Model => Model.Titulo)
-        <label> Resumo: <input name="resumo" value="@Model.Resumo" required /></label>@Html.ValidationMessageFor(Model => Model.Resumo)
-        <label> Categoria: <input name="categoria" value="@Model.Categoria" /></label>@Html.ValidationMessageFor(Model => Model.Categoria)
-
-        <button type="submit">Cadastrar</button>
-
-    </form>
-        -->
-
-    <script src="~/js/jquery-1.10.2.js"></script>
-    <script src="~/js/jquery.validate.js"></script>
-    <script src="~/js/jquery.validate.unobtrusive.js"></script>
-    <script src="~/js/jquery-ui.js"></script>
-    <script>
-        $("input[name='Categoria']").autocomplete({
-            source: function (request, response) {
-                $.post(
-                    "@Url.Action("CategoriaAutocomplete")",
-                    { termoDigitado: request.term },
-                    function (data) {
-                         response(data);
-                     });
-                }
-        });
-    </script>
-
-</body>
-
-</html>
+@section Scripts {
+    <partial name="_Scripts" />
+}
