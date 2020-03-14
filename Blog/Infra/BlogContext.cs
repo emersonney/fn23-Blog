@@ -12,14 +12,13 @@ namespace Blog.Infra
 {
     public class BlogContext : DbContext
     {
+        public BlogContext()
+        {
+        }
+
+        public BlogContext(DbContextOptions<BlogContext> options) : base(options) { }
 
         public DbSet<Post> Posts { get; set; }
-
-        ////2.2
-        //public static readonly LoggerFactory MyLoggerFactory
-        //    = new LoggerFactory(new[]{
-        //        new ConsoleLoggerProvider((_,_) => true, true)
-        //    });
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -30,7 +29,7 @@ namespace Blog.Infra
             IConfiguration configuration = builder.Build();
             string stringConexao = configuration.GetConnectionString("Blog");
             optionsBuilder.UseSqlServer(stringConexao);
-            //optionsBuilder.UseLoggerFactory(MyLoggerFactory);
         }
+
     }
 }
